@@ -30,13 +30,15 @@ public class Etlap {
         return kategoria;
     }
 
-    public void setNev(String cim) {
+    public void setNev(String nev) {
         this.nev = nev;
     }
 
     public void setKategoria(String kategoria) {
         this.kategoria = kategoria;
     }
+
+
 
     public void setAr(int ar) {
         this.ar = ar;

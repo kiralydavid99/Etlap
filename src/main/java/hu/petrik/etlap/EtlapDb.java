@@ -26,7 +26,7 @@ public class EtlapDb {
         return etelek;
     }
     public int etelHozzaadasa(String nev, String kategoria, int ar) throws SQLException {
-        String sql = "INSERT INTO filmek(cim, kategoria, hossz, ertekeles) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO etelek(nev, kategoria, ar) VALUES (?,?,?,?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, nev);
         stmt.setString(2, kategoria);
@@ -35,25 +35,12 @@ public class EtlapDb {
     }
 
     public boolean etelTorlese(int id) throws SQLException {
-        String sql = "DELETE FROM filmek WHERE id = ?";
+        String sql = "DELETE FROM etelek WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setInt(1, id);
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
 
-    public boolean etlapModositasa(Etlap modositando) throws SQLException {
-        String sql = "UPDATE filmek SET " +
-                "nev = ?," +
-                "kategoria = ?," +
-                "ar = ?," +
-                "WHERE id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, modositando.getNev());
-        stmt.setString(2, modositando.getKategoria());
-        stmt.setInt(3, modositando.getAr());
-        stmt.setInt(5, modositando.getId());
-        int erintettSorok = stmt.executeUpdate();
-        return erintettSorok == 1;
-    }
+
 }
