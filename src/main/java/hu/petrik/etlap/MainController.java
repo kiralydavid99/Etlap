@@ -33,7 +33,7 @@ public class MainController extends Controller {
     @FXML
     private TableView etlapTable;
 
-    public void initialize(){
+    public void initialize() {
         colNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
         colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
         colAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
@@ -49,12 +49,12 @@ public class MainController extends Controller {
     @FXML
     public void onTorlesButtonClick(ActionEvent actionEvent) {
         int selectedIndex = etlapTable.getSelectionModel().getSelectedIndex();
-        if (selectedIndex == -1){
+        if (selectedIndex == -1) {
             alert("A törléshez előbb válasszon ki egy elemet a táblázatból");
             return;
         }
         Etlap torlendoEtel = (Etlap) etlapTable.getSelectionModel().getSelectedItem();
-        if (!confirm("Biztos hogy törölni szeretné az alábbi ételt: "+torlendoEtel.getNev())){
+        if (!confirm("Biztos hogy törölni szeretné az alábbi ételt: " + torlendoEtel.getNev())) {
             return;
         }
         try {
@@ -66,8 +66,8 @@ public class MainController extends Controller {
         }
     }
 
-    @Deprecated
-    public void onHozzaadasButtonClick(ActionEvent actionEvent) {
+    @FXML
+    public void UjfelvetelButtonClick(ActionEvent actionEvent) {
         try {
             Controller hozzadas = ujAblak("hozzaad-view.fxml", "Étel hozzáadása",
                     320, 400);
@@ -78,11 +78,11 @@ public class MainController extends Controller {
         }
     }
 
-    private void etlapListaFeltolt(){
+    private void etlapListaFeltolt() {
         try {
-            List<Etlap> etelList = db.getEtelek();
+            List<Etlap> etelList = db.getEtlap();
             etlapTable.getItems().clear();
-            for(Etlap etlap: etelList){
+            for (Etlap etlap : etelList) {
                 etlapTable.getItems().add(etlap);
             }
         } catch (SQLException e) {
@@ -90,8 +90,8 @@ public class MainController extends Controller {
         }
     }
 
-    @FXML
-    public void onHozzaadButtonClick(ActionEvent actionEvent) {
-    }
+
 }
+
+
 

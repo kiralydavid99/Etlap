@@ -10,20 +10,20 @@ public class EtlapDb {
     public EtlapDb() throws SQLException {
         conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/etlapdb", "root", "");
     }
-    public List<Etlap> getEtelek() throws SQLException {
-        List<Etlap> etelek = new ArrayList<>();
+    public List<Etlap> getEtlap() throws SQLException {
+        List<Etlap> etlap = new ArrayList<>();
         Statement stmt = conn.createStatement();
-        String sql = "SELECT * FROM etelek;";
+        String sql = "SELECT * FROM etlap;";
         ResultSet result = stmt.executeQuery(sql);
         while (result.next()) {
             int id = result.getInt("id");
             int ar = result.getInt("ar");
             String nev = result.getString("nev");
             String kategoria = result.getString("kategoria");
-            Etlap etlap = new Etlap(id, ar,nev, kategoria);
-            etelek.add(etlap);
+            Etlap etelek = new Etlap(id, ar,nev, kategoria);
+            etlap.add(etelek);
         }
-        return etelek;
+        return etlap;
     }
     public int etelHozzaadasa(String nev, String kategoria, int ar) throws SQLException {
         String sql = "INSERT INTO etelek(nev, kategoria, ar) VALUES (?,?,?,?)";
@@ -35,7 +35,7 @@ public class EtlapDb {
     }
 
     public boolean etelTorlese(int id) throws SQLException {
-        String sql = "DELETE FROM etelek WHERE id = ?";
+        String sql = "DELETE FROM etlap WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setInt(1, id);
         int erintettSorok = stmt.executeUpdate();

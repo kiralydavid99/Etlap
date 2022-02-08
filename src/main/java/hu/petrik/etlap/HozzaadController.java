@@ -19,6 +19,13 @@ public class HozzaadController extends Controller {
     @FXML
     private Spinner<Integer> inputAr;
 
+    private EtlapDb db;
+
+
+    public void initialize() throws SQLException {
+        db = new EtlapDb();
+    }
+
 
     @FXML
     public void onHozzaadButtonClick(ActionEvent actionEvent) {
@@ -39,12 +46,9 @@ public class HozzaadController extends Controller {
         } catch (NullPointerException ex) {
             alert("Az ár megadása kötelező");
             return;
-        } catch (Exception ex) {
-            alert("A hossz csak 1 és 999 közötti szám lehet");
-            return;
         }
-        if (ar < 1 || ar > 999) {
-            alert("A hossz csak 1 és 999 közötti szám lehet");
+        if (ar == 0 || ar < 1) {
+            alert("Az ár nem lehet nulla vagy annál kisebb");
             return;
         }
 
