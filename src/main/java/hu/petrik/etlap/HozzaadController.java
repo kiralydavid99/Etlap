@@ -1,15 +1,13 @@
 package hu.petrik.etlap;
 
 
-import hu.petrik.etlap.EtlapDb;
-import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class HozzaadController extends Controller {
     @FXML
